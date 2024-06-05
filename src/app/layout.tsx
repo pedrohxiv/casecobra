@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Recursive } from "next/font/google";
 
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import "@/styles/globals.css";
 
-const font = Inter({ subsets: ["latin"] });
+const font = Recursive({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CaseCobra",
+  title: "casecobra",
 };
 
 interface Props {
@@ -20,6 +21,7 @@ const RootLayout = ({ children }: Props) => {
       <body className={font.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

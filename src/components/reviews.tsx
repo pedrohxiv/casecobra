@@ -7,12 +7,7 @@ import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 import { Phone } from "@/components/phone";
 import { cn, splitArray } from "@/lib/utils";
 
-const POSSIBLE_ANIMATION_DELAYS = Array.from(
-  { length: 6 },
-  (_, i) => `${(i * 0.1).toFixed(1)}s`
-);
-
-interface ReviewColumnProps {
+interface Props {
   reviews: string[];
   className?: string;
   reviewClassName?: (reviewIndex: number) => string;
@@ -24,7 +19,7 @@ const ReviewColumn = ({
   className,
   reviewClassName,
   msPerPixel = 0,
-}: ReviewColumnProps) => {
+}: Props) => {
   const [columnHeight, setColumnHeight] = useState(0);
 
   const columnRef = useRef<HTMLDivElement | null>(null);
@@ -63,10 +58,10 @@ const ReviewColumn = ({
             reviewClassName?.(i % reviews.length)
           )}
           style={{
-            animationDelay:
-              POSSIBLE_ANIMATION_DELAYS[
-                Math.floor(Math.random() * POSSIBLE_ANIMATION_DELAYS.length)
-              ],
+            animationDelay: Array.from(
+              { length: 6 },
+              (_, i) => `${(i * 0.1).toFixed(1)}s`
+            )[Math.floor(Math.random() * 6)],
           }}
         >
           <Phone imgSrc={review} />
@@ -78,6 +73,7 @@ const ReviewColumn = ({
 
 export const Reviews = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+
   const isInView = useInView(containerRef, { once: true, amount: 0.4 });
 
   const columns = splitArray(
