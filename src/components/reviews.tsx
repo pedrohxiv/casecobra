@@ -20,7 +20,7 @@ const ReviewColumn = ({
   reviewClassName,
   msPerPixel = 0,
 }: Props) => {
-  const [columnHeight, setColumnHeight] = useState(0);
+  const [columnHeight, setColumnHeight] = useState<number>(0);
 
   const columnRef = useRef<HTMLDivElement | null>(null);
 
