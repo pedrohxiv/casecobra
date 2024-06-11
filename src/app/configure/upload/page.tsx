@@ -40,7 +40,7 @@ const UploadPage = () => {
 
     toast({
       variant: "destructive",
-      title: `${file.file.type} type is not supported.`,
+      title: `Uh oh! "${file.file.type}" type is not supported.`,
       description: "Please choose a PNG, JPG or JPEG image instead.",
     });
   };
@@ -71,10 +71,14 @@ const UploadPage = () => {
           }}
           onDragEnter={() => setIsDragOver(true)}
           onDragLeave={() => setIsDragOver(false)}
+          disabled={isUploading || isPending}
         >
           {({ getRootProps, getInputProps }) => (
             <div
-              className="h-full w-full flex-1 flex flex-col items-center justify-center cursor-pointer"
+              className={cn(
+                "h-full w-full flex-1 flex flex-col items-center justify-center cursor-pointer",
+                { "cursor-not-allowed": isUploading || isPending }
+              )}
               {...getRootProps()}
             >
               <input {...getInputProps()} />
