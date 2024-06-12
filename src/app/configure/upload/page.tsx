@@ -77,7 +77,7 @@ const UploadPage = () => {
             <div
               className={cn(
                 "h-full w-full flex-1 flex flex-col items-center justify-center cursor-pointer",
-                { "cursor-not-allowed": isUploading || isPending }
+                { "cursor-default": isUploading || isPending }
               )}
               {...getRootProps()}
             >
