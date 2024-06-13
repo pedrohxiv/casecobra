@@ -95,15 +95,15 @@ export const DesignConfigurator = ({
     mutationFn: async (args: Args) => {
       await Promise.all([saveConfiguration(), updateConfiguration(args)]);
     },
+    onSuccess: () => {
+      router.push(`/configure/preview?id=${configId}`);
+    },
     onError: () => {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
         description: "There was an error on our end, please try again.",
       });
-    },
-    onSuccess: () => {
-      router.push(`/configure/preview?id=${configId}`);
     },
   });
 
