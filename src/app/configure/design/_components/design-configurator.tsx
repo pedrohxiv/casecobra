@@ -8,7 +8,7 @@ import {
   PhoneModel,
 } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
+import { ArrowRight, Check, ChevronsUpDown, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { Rnd } from "react-rnd";
@@ -400,6 +400,9 @@ export const DesignConfigurator = ({
                 className="w-full"
                 disabled={isUploading || isPending}
               >
+                {(isUploading || isPending) && (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                )}
                 Continue
                 <ArrowRight className="h-4 w-4 ml-1.5 inline" />
               </Button>
